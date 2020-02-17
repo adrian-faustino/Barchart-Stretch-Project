@@ -5,30 +5,27 @@ const barsDivArray = document.getElementsByClassName('bars');
 
 //Informatio need to draw a bar
 const element = barsDivArray;
-let data = [1, 2, 3, 4, 5]; //make 4 bars
+let data = [100, 2, 3, 4, 5, 50]; //make 4 bars
 let options = {
   barWidth: '50px',
   barHeight: '',
-  barColor: 'red'
+  barColor: 'red',
+  barSpacing: 'wide', //make setBarSpace() functionl later to return wide, narrow etc
 };
 //------------------------------
 
 //-----------Main functions-----------//
 function drawBarChart(data, options, element) {
-  //determine highest, determine lowest --> determine heights
-
-
-  //determine number of bars --> determine spacing per bar %
-  const barSpacing = (80 / data.length);
+  const barSpacing = ( 100 / data.length);
 
   //for each element in array, create a new bar and draw each
   for (let i = 0 ; i < data.length; i++) {
     let newDiv = document.createElement('div');
     canvas.appendChild(newDiv);
     newDiv.style.setProperty('--width', options.barWidth);
-    newDiv.style.setProperty('--left', barSpacing * (i + 1));
+    newDiv.style.setProperty('--left', barSpacing * (i + 0.5));
     newDiv.style.setProperty('--color', options.barColor);
-    newDiv.style.setProperty('--height', setBarHeight(data[i]) - 5);
+    newDiv.style.setProperty('--height', setBarHeight(data[i]) * 0.95);
   }
 }
 
@@ -37,6 +34,9 @@ function setBarHeight(num) {
   let heightRatio = (num / maxHeight);
   return heightRatio * 100;
 }
+
+
+//-----------Functions activated by event listeners-----------//
 
 
 //-----------General Functions-----------//
