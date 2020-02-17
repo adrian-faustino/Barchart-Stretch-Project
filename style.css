@@ -30,7 +30,7 @@
   bottom: 0%;
   left: calc(var(--left) * 1%);
   width: var(--width);
-  height: var(--height);
+  height: calc(var(--height) * 1%);
   background-color: var(--color);
   transform: translateX(-50%);
 }
