@@ -20,15 +20,17 @@
   position: relative;
 }
 
-.bars {
+#canvas > div {
+  --left: 0;
   --width: 0;
   --height: 0;
-  --left: 0;
+  --color: '';
+  display: inline-block;
   position: absolute;
   bottom: 0%;
-  left: var(--left);
+  left: calc(var(--left) * 1%);
+  width: var(--width);
   height: var(--height);
-  width: var(--left);
-  background-color: blueviolet;
+  background-color: var(--color);
   transform: translateX(-50%);
 }
