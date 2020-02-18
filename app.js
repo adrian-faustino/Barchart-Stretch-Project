@@ -14,7 +14,7 @@ let options = {
 
 //-----------Main functions-----------//
 function drawBarChart(data, options, element) {
-  //for each element in array, create a new bar and draw each
+  //for each element in data array, create a new div and draw each bar
   for (let i = 0 ; i < data.length; i++) {
     let newDiv = document.createElement('div');
     element.appendChild(newDiv);
@@ -66,6 +66,10 @@ function setBarColor(str) {
   options.barColor = str;
 }
 
+// function appendData(arr) {
+//   for (let i)
+// }
+
 //clear canvas
 function clearCanvas() {
   while (canvas.childNodes.length > 0) {
@@ -87,6 +91,7 @@ optionsForm.addEventListener('submit', function(e) {
   setBarWidth(barWidthForm.value);
   setBarSpacing(barSpacingForm.value);
   setBarColor(barColorForm.value);
+  // appendData(barHeightForm);
   drawBarChart(data, options, canvas);
 });
 
@@ -110,6 +115,18 @@ function arrayMin(arr) {
     }
   }
   return tempMin;
+}
+
+function addTextField() { //to do: add validation later. input has to be number
+  let barHeightParentDiv = document.getElementById('barHeightFields');
+  let childDiv = document.createElement('input');
+ 
+
+  childDiv.setAttribute('type', 'text');
+  childDiv.setAttribute('class', 'barHeight');
+  childDiv.setAttribute('placeholder', 'Enter value');
+  
+  barHeightParentDiv.appendChild(childDiv);
 }
 
 //---console logs
