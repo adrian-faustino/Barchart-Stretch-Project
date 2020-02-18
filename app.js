@@ -3,26 +3,23 @@ const title = document.getElementById('title');
 const canvas = document.getElementById('canvas');
 
 //Information need to draw a bar
-let data = [4, 6, 6 ,7]; //make 4 bars
+let data = [4, 6, 6 , 7 , 5, 4]; //make 4 bars
 let options = {
   barWidth: '',
   barHeight: '',
   barColor: 'red',
-  barSpacing: 'wide', //make setBarSpace() functionl later to return wide, narrow etc
+  barSpacing: ''
 };
-let numberOfBars = data.length;
 //------------------------------
 
 //-----------Main functions-----------//
 function drawBarChart(data, options, element) {
-  const barSpacing = ( 100 / data.length);
-
   //for each element in array, create a new bar and draw each
   for (let i = 0 ; i < data.length; i++) {
     let newDiv = document.createElement('div');
     element.appendChild(newDiv);
     newDiv.style.setProperty('--width', options.barWidth);
-    newDiv.style.setProperty('--left', barSpacing * (i + 0.5));
+    newDiv.style.setProperty('--left', options.barSpacing + (options.barSpacing * i));
     newDiv.style.setProperty('--color', options.barColor);
     newDiv.style.setProperty('--height', setBarHeight(data[i]) * 0.95);
   }
@@ -36,7 +33,7 @@ function setBarHeight(num) {
 
 //...options user input
 function setBarWidth(str) {
-  let baseWidth = (100 / numberOfBars);
+  let baseWidth = (100 / data.length);
   switch (str) {
     case 'default':
       options.barWidth = (baseWidth * 0.7);
@@ -50,9 +47,24 @@ function setBarWidth(str) {
   }
 }
 
+function setBarSpacing(str) { //to do: change spacing to a number input type instead of taking a selection
+  let baseSpacing = (80 / data.length);
+  switch (str) {
+    case 'default':
+      options.barSpacing = (baseSpacing * 1.1);
+      break;
+    case 'narrow':
+      options.barSpacing = (baseSpacing * 1);
+      break;
+    case 'wide':
+      options.barSpacing = (baseSpacing * 1.2);
+      break;
+  }
+}
+
+//clear canvas
 function clearCanvas() {
   while (canvas.childNodes.length > 0) {
-    console.log('hi');
     canvas.removeChild(canvas.firstChild);
   }
 }
@@ -69,7 +81,7 @@ optionsForm.addEventListener('submit', function(e) {
   e.preventDefault();
   clearCanvas();
   setBarWidth(barWidthForm.value);
-  // setBarSpacing(str);
+  setBarSpacing(barSpacingForm.value);
   // setBarColor(val);
   drawBarChart(data, options, canvas);
 });
