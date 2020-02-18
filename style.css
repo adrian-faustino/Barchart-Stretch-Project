@@ -12,11 +12,18 @@
   font-weight: bold;
 }
 
+#optionsNavBar {
+  float: left;
+  height: 100vh;
+  width: 20%;
+  background: linear-gradient(to bottom, blue, aqua);
+}
+
 #canvas {
-  height: 600px;
-  width: 600px;
+  float: left;
+  height: 90vh;
+  width: 80%;
   background: linear-gradient(to right, black, grey);
-  margin: 10px auto;
   position: relative;
 }
 

@@ -8,6 +8,36 @@
   <link rel="stylesheet" href="style.css" type="text/css">
 </head>
 <body>
+  <div id="optionsNavBar">
+    <h2>Options:</h2>
+    <form id="optionsForm" method="GET">
+      <!-- Bar Width -->
+      <label for="barWidth">Bar Width:</label>
+      <select name="barWdith" id="barWidth">
+        <option value="default">Default</option>
+        <option value="narrow">Narrow</option>
+        <option value="wide">Wide</option>
+      </select>
+      <!-- Bar Spacing -->
+      <label for="barSpacing">Bar Spacing:</label>
+      <select name="barSpacing" id="barSpacing">
+        <option value="default">Default</option>
+        <option value="narrow">Narrow</option>
+        <option value="wide">Wide</option>
+      </select>
+      <!-- Bar Color -->
+      <label for="barColor">Bar Color:</label>
+      <input type="color" name="barColor" id="barColor">
+      <!-- Submit Button -->
+      <div>
+        <button type="reset">Reset</button>
+        <button type="submit">Submit</button>
+      </div>
+    </form>
+
+
+  </div>
+
   <div id="title">Bar Chart</div>
   <div id="canvas">
     <div class="bars"></div>

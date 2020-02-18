@@ -5,13 +5,14 @@ const barsDivArray = document.getElementsByClassName('bars');
 
 //Informatio need to draw a bar
 const element = barsDivArray;
-let data = [100, 2, 3, 4, 5, 50]; //make 4 bars
+let data = [4, 6, 6 ,7]; //make 4 bars
 let options = {
-  barWidth: '50px',
+  barWidth: '9%',
   barHeight: '',
   barColor: 'red',
   barSpacing: 'wide', //make setBarSpace() functionl later to return wide, narrow etc
 };
+let numberOfBars = data.length;
 //------------------------------
 
 //-----------Main functions-----------//
@@ -35,8 +36,36 @@ function setBarHeight(num) {
   return heightRatio * 100;
 }
 
+function setBarWidth(str) {
+  let baseWidth = (100 / numberOfBars);
+  switch (str) {
+    case 'default':
+      options.barWidth = (baseWidth * 0.7);
+      break;
+    case 'narrow':
+      options.barWidth = (baseWidth * 0.5);
+      break;
+    case 'wide':
+      options.barWidth = (baseWidth * 0.9);
+      break;
+  }
+}
+
 
 //-----------Functions activated by event listeners-----------//
+//Form DOM Cache
+const optionsForm = document.getElementById('optionsForm');
+let barWidthForm = optionsForm.barWidth;
+let barSpacingForm = optionsForm.barSpacing;
+let barColorForm = optionsForm.barColor;
+
+optionsForm.addEventListener('submit', function(e) {
+  e.preventDefault();
+  setBarWidth(barWidthForm.value);
+  // setBarSpacing(str);
+  // setBarColor(val);
+  // drawBarChart(data, options, element);
+});
 
 
 //-----------General Functions-----------//
@@ -61,6 +90,5 @@ function arrayMin(arr) {
 }
 
 //---console logs
-console.log(setBarHeight(2));
 
 drawBarChart(data, options, element);
