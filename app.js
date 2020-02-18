@@ -7,7 +7,7 @@ let data = [4, 6, 6 , 7 , 5, 4]; //make 4 bars
 let options = {
   barWidth: '',
   barHeight: '',
-  barColor: 'red',
+  barColor: '',
   barSpacing: ''
 };
 //------------------------------
@@ -62,6 +62,10 @@ function setBarSpacing(str) { //to do: change spacing to a number input type ins
   }
 }
 
+function setBarColor(str) {
+  options.barColor = str;
+}
+
 //clear canvas
 function clearCanvas() {
   while (canvas.childNodes.length > 0) {
@@ -82,7 +86,7 @@ optionsForm.addEventListener('submit', function(e) {
   clearCanvas();
   setBarWidth(barWidthForm.value);
   setBarSpacing(barSpacingForm.value);
-  // setBarColor(val);
+  setBarColor(barColorForm.value);
   drawBarChart(data, options, canvas);
 });
 
