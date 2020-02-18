@@ -3,7 +3,7 @@ const title = document.getElementById('title');
 const canvas = document.getElementById('canvas');
 
 //Information need to draw a bar
-let data = []; //make 4 bars
+let data = [];
 let options = {
   barWidth: '',
   barHeight: '',
@@ -14,10 +14,10 @@ let options = {
 
 //-----------Main functions-----------//
 function drawBarChart(data, options, element) {
-  //for each element in data array, create a new div and draw each bar
   for (let i = 0 ; i < data.length; i++) {
     let newDiv = document.createElement('div');
     element.appendChild(newDiv);
+
     newDiv.style.setProperty('--width', options.barWidth);
     newDiv.style.setProperty('--left', options.barSpacing + (options.barSpacing * i));
     newDiv.style.setProperty('--color', options.barColor);
@@ -87,7 +87,7 @@ let barSpacingForm = optionsForm.barSpacing;
 let barColorForm = optionsForm.barColor;
 let barHeightForm = optionsForm.getElementsByClassName('barHeight');
 
-//Create Bar Chart Button
+//Generate Chart Button
 optionsForm.addEventListener('submit', function(e) {
   e.preventDefault();
   clearCanvas();
@@ -97,7 +97,6 @@ optionsForm.addEventListener('submit', function(e) {
   setBarColor(barColorForm.value);
   drawBarChart(data, options, canvas);
 });
-
 
 //-----------General Functions-----------//
 function arrayMax(arr) {
@@ -113,14 +112,17 @@ function arrayMax(arr) {
 function addTextField() { //to do: add validation later. input has to be number
   let barHeightParentDiv = document.getElementById('barHeightFields');
   let childDiv = document.createElement('input');
- 
 
   childDiv.setAttribute('type', 'text');
   childDiv.setAttribute('class', 'barHeight');
   childDiv.setAttribute('placeholder', 'Enter bar height');
-  
   barHeightParentDiv.appendChild(childDiv);
 }
 
+function enterBlur() {
+  if (event.keyCode == 13) {
+    document.getElementById('title').blur();
+  }
+}
 //---console logs
 
