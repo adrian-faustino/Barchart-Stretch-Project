@@ -44,3 +44,17 @@
   border: 1px dotted white;
   opacity: 0.9;
 }
+
+.barHeight {
+  display: block;
+  height: 30px;
+  font-size: 20px;
+  margin: 5px 10px;
+}
+
+.submitButtons {
+  padding: 5px 10px;
+  font-size: 18px;
+  margin: 10px;
+  border-radius: 5px;
+}

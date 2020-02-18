@@ -12,22 +12,28 @@
     <h2>Options:</h2>
     <form id="optionsForm" method="GET">
       <!-- Bar Width -->
-      <label for="barWidth">Bar Width:</label>
-      <select name="barWdith" id="barWidth">
-        <option value="default">Default</option>
-        <option value="narrow">Narrow</option>
-        <option value="wide">Wide</option>
-      </select>
+      <div>
+        <label for="barWidth">Bar Width:</label>
+        <select name="barWdith" id="barWidth">
+          <option value="default">Default</option>
+          <option value="narrow">Narrow</option>
+          <option value="wide">Wide</option>
+        </select>
+      </div>
       <!-- Bar Spacing -->
-      <label for="barSpacing">Bar Spacing:</label>
-      <select name="barSpacing" id="barSpacing">
-        <option value="default">Default</option>
-        <option value="narrow">Narrow</option>
-        <option value="wide">Wide</option>
-      </select>
+      <div>
+        <label for="barSpacing">Bar Spacing:</label>
+        <select name="barSpacing" id="barSpacing">
+          <option value="default">Default</option>
+          <option value="narrow">Narrow</option>
+          <option value="wide">Wide</option>
+        </select>
+      </div>
       <!-- Bar Color -->
-      <label for="barColor">Bar Color:</label>
-      <input type="color" name="barColor" id="barColor">
+      <div>
+        <label for="barColor">Bar Color:</label>
+        <input type="color" name="barColor" id="barColor">
+      </div>
       <!-- Add Bar Height input field button -->
       <div>
         <label for="addField">Add Bar:</label>
@@ -36,8 +42,8 @@
       </div>
       <!-- Submit Button -->
       <div>
-        <button type="reset">Reset</button>
-        <button type="submit">Generate Chart</button>
+        <button class="submitButtons" type="reset">Reset</button>
+        <button class="submitButtons" type="submit">Generate Chart</button>
       </div>
     </form>
 

@@ -3,7 +3,7 @@ const title = document.getElementById('title');
 const canvas = document.getElementById('canvas');
 
 //Information need to draw a bar
-let data = [4, 6, 6 , 7 , 5, 4]; //make 4 bars
+let data = []; //make 4 bars
 let options = {
   barWidth: '',
   barHeight: '',
@@ -31,7 +31,7 @@ function setBarHeight(num) {
   return heightRatio * 100;
 }
 
-//...options user input
+//Options Section functions
 function setBarWidth(str) {
   let baseWidth = (100 / data.length);
   switch (str) {
@@ -66,15 +66,17 @@ function setBarColor(str) {
   options.barColor = str;
 }
 
-// function appendData(arr) {
-//   for (let i)
-// }
+function appendData(arr) {
+  for (let i = 0; i < arr.length; i++) {
+    data.push(parseInt(arr[i].value));
+  }
+}
 
-//clear canvas
 function clearCanvas() {
   while (canvas.childNodes.length > 0) {
     canvas.removeChild(canvas.firstChild);
   }
+  data = [];
 }
 
 //-----------Functions activated by event listeners-----------//
@@ -83,15 +85,16 @@ const optionsForm = document.getElementById('optionsForm');
 let barWidthForm = optionsForm.barWidth;
 let barSpacingForm = optionsForm.barSpacing;
 let barColorForm = optionsForm.barColor;
+let barHeightForm = optionsForm.getElementsByClassName('barHeight');
 
 //Create Bar Chart Button
 optionsForm.addEventListener('submit', function(e) {
   e.preventDefault();
   clearCanvas();
+  appendData(barHeightForm);
   setBarWidth(barWidthForm.value);
   setBarSpacing(barSpacingForm.value);
   setBarColor(barColorForm.value);
-  // appendData(barHeightForm);
   drawBarChart(data, options, canvas);
 });
 
@@ -107,16 +110,6 @@ function arrayMax(arr) {
   return tempMax;
 }
 
-function arrayMin(arr) {
-  let tempMin = arr[0];
-  for (let i = 0; i < arr.length; i++) {
-    if (arr[i] < tempMin) {
-      tempMin = arr[i];
-    }
-  }
-  return tempMin;
-}
-
 function addTextField() { //to do: add validation later. input has to be number
   let barHeightParentDiv = document.getElementById('barHeightFields');
   let childDiv = document.createElement('input');
@@ -124,7 +117,7 @@ function addTextField() { //to do: add validation later. input has to be number
 
   childDiv.setAttribute('type', 'text');
   childDiv.setAttribute('class', 'barHeight');
-  childDiv.setAttribute('placeholder', 'Enter value');
+  childDiv.setAttribute('placeholder', 'Enter bar height');
   
   barHeightParentDiv.appendChild(childDiv);
 }
