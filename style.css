@@ -41,7 +41,6 @@
   --width: 0;
   --height: 0;
   --color: '';
-  display: inline-block;
   position: absolute;
   bottom: 0%;
   left: calc(var(--left) * 1%);
@@ -61,12 +60,15 @@
   margin: 5px 10px;
 }
 
-.barHeightDisplay {
-  position: absolute;
-  --bottom: 0;
-  bottom: calc(var(--bottom) * 1%);
-  left: 50%;
-  transform: translateX(-50%);
+#canvas div {
+  display: table;
+  text-align: center;
+}
+
+#canvas div .barHeightDisplay {
+  --verticalAlign: '';
+  display: table-cell;
+  vertical-align: var(--verticalAlign);
   font-size: 30px;
   font-weight: bold;
   color: white;

@@ -16,21 +16,25 @@ let options = {
 //-----------Main functions-----------//
 function drawBarChart(data, options, element) {
   for (let i = 0 ; i < data.length; i++) {
+    //create div
     let newDiv = document.createElement('div');
     element.appendChild(newDiv);
 
+    //style div
     newDiv.style.setProperty('--width', options.barWidth);
     newDiv.style.setProperty('--left', options.barSpacing + (options.barSpacing * i));
     newDiv.style.setProperty('--color', options.barColor);
     newDiv.style.setProperty('--height', setBarHeight(data[i]));
     newDiv.setAttribute('position', 'relative');
 
-    //Add number on bar
-    let textNode = document.createElement('div');
+    //create p
+    let textNode = document.createElement('p');
+    newDiv.appendChild(textNode);
+
+    //style p
     textNode.innerHTML = data[i];
     textNode.setAttribute('class', 'barHeightDisplay');
-    textNode.style.setProperty('--bottom', options.barHeightPosition);
-    newDiv.appendChild(textNode);
+    textNode.style.setProperty('--verticalAlign', options.barHeightPosition);
   }
 }
 
@@ -84,13 +88,13 @@ function appendData(arr) {
 function setBarHeightDisplay(str) {
   switch (str) {
     case 'top':
-      options.barHeightPosition = 90;
+      options.barHeightPosition = 'top';
       break;
     case 'center':
-      options.barHeightPosition = 50;
+      options.barHeightPosition = 'middle';
       break;
     case 'bottom':
-      options.barHeightPosition = 0;
+      options.barHeightPosition = 'bottom';
       break;
   }
 }
@@ -109,7 +113,7 @@ let barWidthForm = optionsForm.barWidth;
 let barSpacingForm = optionsForm.barSpacing;
 let barColorForm = optionsForm.barColor;
 let barHeightForm = optionsForm.getElementsByClassName('barHeight');
-let barValPositionForm = optionsForm.valPos;
+let valPositionForm = optionsForm.valPos;
 
 //Generate Chart Button
 optionsForm.addEventListener('submit', function(e) {
@@ -119,7 +123,7 @@ optionsForm.addEventListener('submit', function(e) {
   setBarWidth(barWidthForm.value);
   setBarSpacing(barSpacingForm.value);
   setBarColor(barColorForm.value);
-  setBarHeightDisplay(barValPositionForm.value);
+  setBarHeightDisplay(valPositionForm.value);
   drawBarChart(data, options, canvas);
 });
 
