@@ -61,6 +61,17 @@
   margin: 5px 10px;
 }
 
+.barHeightDisplay {
+  position: absolute;
+  --bottom: 0;
+  bottom: calc(var(--bottom) * 1%);
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 30px;
+  font-weight: bold;
+  color: white;
+}
+
 .submitButtons {
   padding: 5px 10px;
   font-size: 18px;

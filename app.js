@@ -8,7 +8,8 @@ let options = {
   barWidth: '',
   barHeight: '',
   barColor: '',
-  barSpacing: ''
+  barSpacing: '',
+  barHeightPosition: ''
 };
 //------------------------------
 
@@ -21,7 +22,15 @@ function drawBarChart(data, options, element) {
     newDiv.style.setProperty('--width', options.barWidth);
     newDiv.style.setProperty('--left', options.barSpacing + (options.barSpacing * i));
     newDiv.style.setProperty('--color', options.barColor);
-    newDiv.style.setProperty('--height', setBarHeight(data[i]) * 0.95);
+    newDiv.style.setProperty('--height', setBarHeight(data[i]));
+    newDiv.setAttribute('position', 'relative');
+
+    //Add number on bar
+    let textNode = document.createElement('div');
+    textNode.innerHTML = data[i];
+    textNode.setAttribute('class', 'barHeightDisplay');
+    textNode.style.setProperty('--bottom', options.barHeightPosition);
+    newDiv.appendChild(textNode);
   }
 }
 
@@ -72,6 +81,20 @@ function appendData(arr) {
   }
 }
 
+function setBarHeightDisplay(str) {
+  switch (str) {
+    case 'top':
+      options.barHeightPosition = 90;
+      break;
+    case 'center':
+      options.barHeightPosition = 50;
+      break;
+    case 'bottom':
+      options.barHeightPosition = 0;
+      break;
+  }
+}
+
 function clearCanvas() {
   while (canvas.childNodes.length > 0) {
     canvas.removeChild(canvas.firstChild);
@@ -86,6 +109,7 @@ let barWidthForm = optionsForm.barWidth;
 let barSpacingForm = optionsForm.barSpacing;
 let barColorForm = optionsForm.barColor;
 let barHeightForm = optionsForm.getElementsByClassName('barHeight');
+let barValPositionForm = optionsForm.valPos;
 
 //Generate Chart Button
 optionsForm.addEventListener('submit', function(e) {
@@ -95,6 +119,7 @@ optionsForm.addEventListener('submit', function(e) {
   setBarWidth(barWidthForm.value);
   setBarSpacing(barSpacingForm.value);
   setBarColor(barColorForm.value);
+  setBarHeightDisplay(barValPositionForm.value);
   drawBarChart(data, options, canvas);
 });
 
@@ -121,7 +146,9 @@ function addTextField() { //to do: add validation later. input has to be number
 
 function enterBlur() {
   if (event.keyCode == 13) {
-    document.getElementById('title').blur();
+    let titleDiv = document.getElementById('title');
+    titleDiv.blur();
+    titleDiv.style.border = 'none';
   }
 }
 //---console logs
